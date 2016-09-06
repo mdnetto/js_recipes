@@ -1,0 +1,89 @@
+[
+    {
+        "id": 1388534400000,
+        "name": "Berry cobbler",
+        "category": [
+            "desserts"
+        ],
+        "ingredients": [
+            {
+                "name": "fresh blackberries",
+                "quantity": 4,
+                "unit": "cups"
+            },
+            {
+                "name": "lemon juice",
+                "quantity": 1,
+                "unit": "tablespoon"
+            },
+            {
+                "name": "egg",
+                "quantity": 1,
+                "unit": "large"
+            },
+            {
+                "name": "all purpose flour",
+                "quantity": 1,
+                "unit": "cup"
+            },
+            {
+                "name": "melted butter",
+                "quantity": 6,
+                "unit": "tablespoons"
+            }
+        ],
+        "method": [
+            "Preheat oven to 375°. ",
+            "Place blackberries in a lightly greased 8-inch square baking dish; sprinkle with lemon juice. ",
+            "Stir together egg, sugar, and flour in a medium bowl until mixture resembles coarse meal. ",
+            "Sprinkle over fruit. Drizzle melted butter over topping. ",
+            "Bake at 375° for 35 minutes or until lightly browned and bubbly. ",
+            "Let stand 10 minutes. Serve warm with whipped cream, if desired. Garnish with fresh mint sprig, if desired. "
+        ]
+    },
+    {
+        "id": 1420070400000,
+        "name": "Carrot soup",
+        "category": [
+            "soup"
+        ],
+        "ingredients": [
+            {
+                "name": "extra virgin olive oil ",
+                "quantity": 1,
+                "unit": "tablespoon"
+            },
+            {
+                "name": "carrots",
+                "quantity": 4,
+                "unit": "cups"
+            },
+            {
+                "name": "chicken broth",
+                "quantity": 3,
+                "unit": "cups"
+            },
+            {
+                "name": "garlic",
+                "quantity": 4,
+                "unit": "cloves"
+            },
+            {
+                "name": "dried thyme",
+                "quantity": 1,
+                "unit": "teaspoon"
+            },
+            {
+                "name": "tarragon",
+                "quantity": 0.5,
+                "unit": "teaspoon"
+            }
+        ],
+        "method": [
+            "Combine carrots, chicken broth, and onion in a large pot. Pour enough water into the pot to assure the ingredients are covered; add garlic, thyme, and tarragon. ",
+            "Bring the liquid to a boil, reduce heat to medium-low, place a cover on the pot, and simmer the mixture until the carrots are very tender, 40 to 50 minutes. ",
+            "Remove pot from heat and cool soup for 10 minutes. Puree soup with an immersion blender or mash vegetables with a potato masher and whisk the soup until smooth. ",
+            "Return pot to medium heat and cook until reheated, about 5 minutes. Stir cream through the soup. "
+        ]
+    }
+]
