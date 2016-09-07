@@ -8,7 +8,7 @@ var RecipeIngredients = React.createClass({
 		}
   },
   render: function () {
-	var that = this;
+	var that = this; // why is this necessary?
     return (
       <div className='recipeIngredients'>
         <h1>Ingredients</h1>
