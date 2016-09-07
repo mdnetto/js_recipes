@@ -34,11 +34,11 @@ var RecipeForm = React.createClass({// eslint-disable-line no-undef
     return {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]} 
   },
   componentWillMount: function () {
-    this.loadUnitsFromServer()
-    this.loadCategoriesFromServer()
+    this.loadUnitsFromServer();
+    this.loadCategoriesFromServer();
   },
   handleTextChange: function (e) {
-    this.setState({[e.target.name]: e.target.value})
+    this.setState({[e.target.name]: e.target.value});
   },
   initialiseIngredient: function() {
 		var ingredients = this.state.ingredients;
@@ -51,16 +51,16 @@ var RecipeForm = React.createClass({// eslint-disable-line no-undef
 	  this.setState({ingredients:  ingredients});
   },
   handleSubmit: function (e) {
-    e.preventDefault()
-    var name = this.state.name.trim()
-    var category = this.state.category.trim()
+    e.preventDefault();
+    var name = this.state.name.trim();
+    var category = this.state.category.trim();
     var ingredients = this.state.ingredients
     if (!name || !category || !ingredients) {
-      return
+      return;
     }
 	  
-    this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients}) 
-    this.setState(this.getInitialState()) 
+    this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients}) ;
+    this.setState(this.getInitialState()) ;
   },
   renderCategories: function () {
     if (this.state.categories) {
