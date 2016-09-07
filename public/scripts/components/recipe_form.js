@@ -41,13 +41,13 @@ var RecipeForm = React.createClass({// eslint-disable-line no-undef
     this.setState({[e.target.name]: e.target.value});
   },
   initialiseIngredient: function() {
-		var ingredients = this.state.ingredients;
-		ingredients.push({name: '', quantity: '', unit: ''});
-		this.setState({ingredients:  ingredients});
+	var ingredients = this.state.ingredients; // esp. in dynamic typed languages, it can be helpful to include the type with the name, e.g. ingredientList
+	ingredients.push({name: '', quantity: '', unit: ''});
+	this.setState({ingredients:  ingredients});
   },
   handleIngredientNameEdit: function(name, i) {
 	  var ingredients = this.state.ingredients;
-	  ingredients[i].name = name;
+	  ingredients[i].name = name; 
 	  this.setState({ingredients:  ingredients});
   },
   handleSubmit: function (e) {
