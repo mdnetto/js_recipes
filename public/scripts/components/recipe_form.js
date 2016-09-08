@@ -3,10 +3,19 @@ import React, { Component } from 'react';
 import RecipeIngredients from './recipe_ingredients.js';
 
 class RecipeForm extends Component {
-
 	constructor() {
 	    super();
 	    this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]} 
+			this.componentWillMount = this.componentWillMount.bind(this);
+			this.handleTextChange = this.handleTextChange.bind(this);
+			this.initialiseIngredient = this.initialiseIngredient.bind(this);
+			this.handleIngredientNameEdit = this.handleIngredientNameEdit.bind(this);
+			this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.loadUnitsFromServer()
+    this.loadCategoriesFromServer()
   }
 
   loadUnitsFromServer() {
@@ -24,8 +33,7 @@ class RecipeForm extends Component {
   }
 
   loadCategoriesFromServer() {
-    $.ajax({// eslint-disable-line no-undef
-
+    $.ajax({
       url: this.props.categories_url,
       dataType: 'json',
       cache: false,
@@ -38,11 +46,6 @@ class RecipeForm extends Component {
     })
   }
 
-  componentWillMount() {
-    this.loadUnitsFromServer()
-    this.loadCategoriesFromServer()
-  }
-
   handleTextChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -50,7 +53,6 @@ class RecipeForm extends Component {
   initialiseIngredient() {
 		var ingredients = this.state.ingredients;
 		ingredients.push({name: '', quantity: '', unit: ''})
-
 		this.setState({ingredients:  ingredients});
   }
 

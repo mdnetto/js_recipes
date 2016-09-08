@@ -8,10 +8,17 @@ class RecipeBox extends Component {
 	constructor() {
 	    super();
 	    this.state = {recipes: []};
+			this.loadRecipesFromServer = this.loadRecipesFromServer.bind(this);
+			this.handleRecipeSubmit = this.handleRecipeSubmit.bind(this);
+			this.componentDidMount = this.componentDidMount.bind(this);
 	}
 
+  componentDidMount() {
+    this.loadRecipesFromServer()
+    setInterval(this.loadRecipesFromServer, this.props.pollInterval)
+  }
+
   loadRecipesFromServer() {
-			console.log(this.props.recipes_url);
     $.ajax({ // eslint-disable-line no-undef
       url: this.props.recipes_url,
       dataType: 'json',
@@ -38,11 +45,6 @@ class RecipeBox extends Component {
         console.error(this.props.recipes_url, status, err.toString())
       }.bind(this)
     })
-  }
-
-  componentDidMount() {
-    this.loadRecipesFromServer()
-    setInterval(this.loadRecipesFromServer, this.props.pollInterval)
   }
 
   render() {

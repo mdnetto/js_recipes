@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import Recipe from './recipe.js';
 
 class RecipeList extends Component {
+	constructor() {
+	    super();
+	}
 
   render() {
     var recipes = _.orderBy(this.props.data, ['id'], ['desc'])
     var recipeNodes = recipes.map(function (recipe) {
       return (
         <Recipe
-		  image={recipe.image}
+					image={recipe.image}
           name={recipe.name}
           key={recipe.id}
           category={recipe.category}

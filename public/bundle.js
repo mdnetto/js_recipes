@@ -65,7 +65,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_reactDom2.default.render( // eslint-disable-line no-undef
-	_react2.default.createElement(_recipe_box2.default, { recipes_url: 'api/recipes', pollInterval: 2000 }), document.getElementById('content'));
+	_react2.default.createElement(_recipe_box2.default, { recipes_url: 'api/recipes', pollInterval: 5000 }), document.getElementById('content'));
 
 /***/ },
 /* 1 */
@@ -31563,13 +31563,21 @@
 	    var _this = _possibleConstructorReturn(this, (RecipeBox.__proto__ || Object.getPrototypeOf(RecipeBox)).call(this));
 
 	    _this.state = { recipes: [] };
+	    _this.loadRecipesFromServer = _this.loadRecipesFromServer.bind(_this);
+	    _this.handleRecipeSubmit = _this.handleRecipeSubmit.bind(_this);
+	    _this.componentDidMount = _this.componentDidMount.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(RecipeBox, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.loadRecipesFromServer();
+	      setInterval(this.loadRecipesFromServer, this.props.pollInterval);
+	    }
+	  }, {
 	    key: 'loadRecipesFromServer',
 	    value: function loadRecipesFromServer() {
-	      console.log(this.props.recipes_url);
 	      _jquery2.default.ajax({ // eslint-disable-line no-undef
 	        url: this.props.recipes_url,
 	        dataType: 'json',
@@ -31597,12 +31605,6 @@
 	          console.error(this.props.recipes_url, status, err.toString());
 	        }.bind(this)
 	      });
-	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.loadRecipesFromServer();
-	      setInterval(this.loadRecipesFromServer, this.props.pollInterval);
 	    }
 	  }, {
 	    key: 'render',
@@ -31669,10 +31671,21 @@
 	    var _this = _possibleConstructorReturn(this, (RecipeForm.__proto__ || Object.getPrototypeOf(RecipeForm)).call(this));
 
 	    _this.state = { name: '', category: '', ingredients: [{ name: '', unit: '', quantity: '' }] };
+	    _this.componentWillMount = _this.componentWillMount.bind(_this);
+	    _this.handleTextChange = _this.handleTextChange.bind(_this);
+	    _this.initialiseIngredient = _this.initialiseIngredient.bind(_this);
+	    _this.handleIngredientNameEdit = _this.handleIngredientNameEdit.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(RecipeForm, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.loadUnitsFromServer();
+	      this.loadCategoriesFromServer();
+	    }
+	  }, {
 	    key: 'loadUnitsFromServer',
 	    value: function loadUnitsFromServer() {
 	      _jquery2.default.ajax({ // eslint-disable-line no-undef
@@ -31690,8 +31703,7 @@
 	  }, {
 	    key: 'loadCategoriesFromServer',
 	    value: function loadCategoriesFromServer() {
-	      _jquery2.default.ajax({ // eslint-disable-line no-undef
-
+	      _jquery2.default.ajax({
 	        url: this.props.categories_url,
 	        dataType: 'json',
 	        cache: false,
@@ -31704,12 +31716,6 @@
 	      });
 	    }
 	  }, {
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.loadUnitsFromServer();
-	      this.loadCategoriesFromServer();
-	    }
-	  }, {
 	    key: 'handleTextChange',
 	    value: function handleTextChange(e) {
 	      this.setState(_defineProperty({}, e.target.name, e.target.value));
@@ -31719,7 +31725,6 @@
 	    value: function initialiseIngredient() {
 	      var ingredients = this.state.ingredients;
 	      ingredients.push({ name: '', quantity: '', unit: '' });
-
 	      this.setState({ ingredients: ingredients });
 	    }
 	  }, {
@@ -31825,7 +31830,10 @@
 		function RecipeIngredients() {
 			_classCallCheck(this, RecipeIngredients);
 
-			return _possibleConstructorReturn(this, (RecipeIngredients.__proto__ || Object.getPrototypeOf(RecipeIngredients)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (RecipeIngredients.__proto__ || Object.getPrototypeOf(RecipeIngredients)).call(this));
+
+			_this.intialiseIngredientOnEnter = _this.initialiseIngredientOnEnter.bind(_this);
+			return _this;
 		}
 
 		_createClass(RecipeIngredients, [{
@@ -31909,7 +31917,7 @@
 	  function RecipeList() {
 	    _classCallCheck(this, RecipeList);
 
-	    return _possibleConstructorReturn(this, (RecipeList.__proto__ || Object.getPrototypeOf(RecipeList)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (RecipeList.__proto__ || Object.getPrototypeOf(RecipeList)).call(this));
 	  }
 
 	  _createClass(RecipeList, [{

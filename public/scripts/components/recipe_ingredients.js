@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
 class RecipeIngredients extends Component {
+	constructor() {
+	    super();
+			this.intialiseIngredientOnEnter = this.initialiseIngredientOnEnter.bind(this);
+	}
 
   initialiseIngredientOnEnter(e) {
 		if (e.keyCode == 13) {
 			e.preventDefault() //prevent it from doign it's own thing
-		    this.props.initialiseIngredient();
+		  this.props.initialiseIngredient();
 		}
   }
-	
+
   render() {
 	var that = this;
     return (
@@ -29,7 +33,6 @@ class RecipeIngredients extends Component {
       </div>
     );
   }
-
 }	
 
 export default RecipeIngredients;
