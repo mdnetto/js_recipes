@@ -21,7 +21,12 @@ class RecipeIngredients extends Component {
 					{this.props.ingredients.map(function(ingredient, i) {
 						return(
 							<p key={i}>
-								<input autoFocus type='text' value={ingredient.name} onChange={function(e) {that.props.handleIngredientNameEdit(e.target.value, i)}} onKeyDown={that.initialiseIngredientOnEnter} /> 
+								<input 
+								  autoFocus type='text' 
+								  value={ingredient.name} 
+								  onChange={ function(e) {that.props.handleIngredientNameEdit(e.target.value, i)}} 
+								  onKeyDown={that.initialiseIngredientOnEnter} 
+								/> 
 							</p>
 						)})
 					}
