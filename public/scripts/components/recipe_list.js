@@ -1,10 +1,11 @@
-var $ = require('jquery');
-var React = require('react');
-var Recipe = require('./recipe.js');
+import $ from 'jquery';
+import React, { Component } from 'react';
+import Recipe from './recipe.js';
 
-var RecipeList = React.createClass({// eslint-disable-line no-undef
-  render: function () {
-    var recipes = _.orderBy(this.props.data, ['id'], ['desc'])// eslint-disable-line no-undef
+class RecipeList extends Component {
+
+  render() {
+    var recipes = _.orderBy(this.props.data, ['id'], ['desc'])
     var recipeNodes = recipes.map(function (recipe) {
       return (
         <Recipe
@@ -23,6 +24,6 @@ var RecipeList = React.createClass({// eslint-disable-line no-undef
       </div>
     );
   }
-});
+}
 
-module.exports = RecipeList;
+export default RecipeList;

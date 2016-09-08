@@ -1,11 +1,12 @@
-var React = require('react');
+import React, { Component } from 'react';
 
 var recipeHeading = {
 	color: '#657b83'
 };
 
-var Recipe = React.createClass({// eslint-disable-line no-undef
-  render: function () {
+class Recipe extends Component {
+
+  render() {
     return (
       <div className='recipe'>
         <h2 className='recipeName' style={recipeHeading}>
@@ -23,7 +24,7 @@ var Recipe = React.createClass({// eslint-disable-line no-undef
       </div>
     );
   }
-});
+}
 
-module.exports = Recipe;
+export default Recipe;
 

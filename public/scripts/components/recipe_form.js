@@ -1,9 +1,15 @@
-var $ = require('jquery');
-var React = require('react');
-var RecipeIngredients = require('./recipe_ingredients.js');
+import $ from 'jquery';
+import React, { Component } from 'react';
+import RecipeIngredients from './recipe_ingredients.js';
 
-var RecipeForm = React.createClass({// eslint-disable-line no-undef
-  loadUnitsFromServer: function () {
+class RecipeForm extends Component {
+
+	constructor() {
+	    super();
+	    this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]} 
+  }
+
+  loadUnitsFromServer() {
     $.ajax({// eslint-disable-line no-undef
       url: this.props.units_url,
       dataType: 'json',
@@ -15,8 +21,9 @@ var RecipeForm = React.createClass({// eslint-disable-line no-undef
         console.error(this.props.units_url, status, err.toString())
       }.bind(this)
     })
-  },
-  loadCategoriesFromServer: function () {
+  }
+
+  loadCategoriesFromServer() {
     $.ajax({// eslint-disable-line no-undef
 
       url: this.props.categories_url,
@@ -29,28 +36,31 @@ var RecipeForm = React.createClass({// eslint-disable-line no-undef
         console.error(this.props.categories_url, status, err.toString())
       }.bind(this)
     })
-  },
-  getInitialState: function () {
-    return {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]} 
-  },
-  componentWillMount: function () {
+  }
+
+  componentWillMount() {
     this.loadUnitsFromServer()
     this.loadCategoriesFromServer()
-  },
-  handleTextChange: function (e) {
+  }
+
+  handleTextChange(e) {
     this.setState({[e.target.name]: e.target.value})
-  },
-  initialiseIngredient: function() {
+  }
+
+  initialiseIngredient() {
 		var ingredients = this.state.ingredients;
-		ingredients.push({name: '', quantity: '', unit: ''});
+		ingredients.push({name: '', quantity: '', unit: ''})
+
 		this.setState({ingredients:  ingredients});
-  },
-  handleIngredientNameEdit: function(name, i) {
+  }
+
+  handleIngredientNameEdit(name, i) {
 	  var ingredients = this.state.ingredients;
 	  ingredients[i].name = name;
 	  this.setState({ingredients:  ingredients});
-  },
-  handleSubmit: function (e) {
+  }
+
+  handleSubmit(e) {
     e.preventDefault()
     var name = this.state.name.trim()
     var category = this.state.category.trim()
@@ -60,16 +70,18 @@ var RecipeForm = React.createClass({// eslint-disable-line no-undef
     }
 	  
     this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients}) 
-    this.setState(this.getInitialState()) 
-  },
-  renderCategories: function () {
+    this.setState(name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]) 
+  }
+
+  renderCategories() {
     if (this.state.categories) {
       return this.state.categories.map(function (category, i) {
         return <option key={i} value={category}>{category}</option>
       })
     }
-  },
-  render: function () {
+  }
+
+  render() {
     return (
       <form className='recipeForm' onSubmit={this.handleSubmit}>
         <input
@@ -93,6 +105,6 @@ var RecipeForm = React.createClass({// eslint-disable-line no-undef
       </form>
     );
   }
-});
+}
 
-module.exports = RecipeForm;
+export default RecipeForm;

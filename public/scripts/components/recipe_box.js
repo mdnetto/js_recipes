@@ -1,10 +1,17 @@
-var $ = require('jquery');
-var React = require('react');
-var RecipeForm = require('./recipe_form.js');
-var RecipeList = require('./recipe_list.js');
+import $ from 'jquery';
+import React, { Component }  from 'react';
+import RecipeForm from './recipe_form.js';
+import RecipeList from './recipe_list.js';
 
-var RecipeBox = React.createClass({ // eslint-disable-line no-undef
-  loadRecipesFromServer: function () {
+class RecipeBox extends Component { 
+
+	constructor() {
+	    super();
+	    this.state = {recipes: []};
+	}
+
+  loadRecipesFromServer() {
+			console.log(this.props.recipes_url);
     $.ajax({ // eslint-disable-line no-undef
       url: this.props.recipes_url,
       dataType: 'json',
@@ -16,8 +23,9 @@ var RecipeBox = React.createClass({ // eslint-disable-line no-undef
         console.error(this.props.recipes_url, status, err.toString())
       }.bind(this)
     })
-  },
-  handleRecipeSubmit: function (recipe) {
+  }
+
+  handleRecipeSubmit(recipe) {
     $.ajax({// eslint-disable-line no-undef
       url: this.props.recipes_url,
       dataType: 'json',
@@ -30,15 +38,14 @@ var RecipeBox = React.createClass({ // eslint-disable-line no-undef
         console.error(this.props.recipes_url, status, err.toString())
       }.bind(this)
     })
-  },
-  getInitialState: function () {
-    return {recipes: []}
-  },
-  componentDidMount: function () {
+  }
+
+  componentDidMount() {
     this.loadRecipesFromServer()
     setInterval(this.loadRecipesFromServer, this.props.pollInterval)
-  },
-  render: function () {
+  }
+
+  render() {
     return (
       <div className='recipeBox'>
         <h1>Recipes</h1>
@@ -47,6 +54,6 @@ var RecipeBox = React.createClass({ // eslint-disable-line no-undef
       </div>
     );
   }
-});
+}
 
-module.exports = RecipeBox;
+export default RecipeBox;
