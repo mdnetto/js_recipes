@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import RecipeIngredients from './recipe_ingredients.js';
 
-class RecipeForm extends Component {
+export default class RecipeForm extends Component {
 	constructor() {
 	    super();
 	    this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]} 
@@ -63,6 +63,7 @@ class RecipeForm extends Component {
   }
 
   handleSubmit(e) {
+		console.log(this.state);
     e.preventDefault()
     var name = this.state.name.trim()
     var category = this.state.category.trim()
@@ -72,7 +73,7 @@ class RecipeForm extends Component {
     }
 	  
     this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients}) 
-    this.setState(name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]) 
+    this.setState({name: '', category: '', ingredients: [{name: '', quantity: '', unit: ''}]}) 
   }
 
   renderCategories() {
@@ -97,16 +98,17 @@ class RecipeForm extends Component {
           placeholder='Select a category'
           value={this.state.category}
           onChange={this.handleTextChange}>
-		  <option>Select a category</option>
+					<option>Select a category</option>
           {this.renderCategories()}
         </select>
-		<RecipeIngredients ingredients={this.state.ingredients} initialiseIngredient={this.initialiseIngredient} handleIngredientNameEdit={this.handleIngredientNameEdit} />
-		<br></br>
-		<br></br>
-        <input type='submit' value='Post' />
-      </form>
+				<RecipeIngredients 
+					ingredients={this.state.ingredients} 
+					initialiseIngredient={this.initialiseIngredient} 
+					handleIngredientNameEdit={this.handleIngredientNameEdit} 
+				/>
+				<br></br> 
+				<input type='submit' value='Post' />
+				</form>
     );
   }
 }
-
-export default RecipeForm;

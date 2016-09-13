@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-class RecipeIngredients extends Component {
-	constructor() {
-	  super();
-		this.intialiseIngredientOnEnter = this.initialiseIngredientOnEnter.bind(this);
+export default class RecipeIngredients extends Component {
+	constructor(props) {
+	  super(props);
+		this.initialiseIngredientOnEnter = this.initialiseIngredientOnEnter.bind(this);
 	}
 
   initialiseIngredientOnEnter(e) {
@@ -14,14 +14,21 @@ class RecipeIngredients extends Component {
   }
 
   render() {
-	var that = this;
     return (
       <div className='recipeIngredients'>
         <h1>Ingredients</h1>
-					{this.props.ingredients.map(function(ingredient, i) {
+					{this.props.ingredients.map((ingredient, i) => {
 						return(
 							<p key={i}>
-								<input autoFocus type='text' value={ingredient.name} onChange={function(e) {that.props.handleIngredientNameEdit(e.target.value, i)}} onKeyDown={that.initialiseIngredientOnEnter} /> 
+								<input 
+									autoFocus type='text' 
+									value={ingredient.name} 
+									onChange = {
+										(e) => (
+											this.props.handleIngredientNameEdit(e.target.value, i)
+										)} 
+									onKeyDown={this.initialiseIngredientOnEnter} 
+								/> 
 							</p>
 						)})
 					}
@@ -29,5 +36,3 @@ class RecipeIngredients extends Component {
     );
   }
 }	
-
-export default RecipeIngredients;

@@ -5,12 +5,12 @@ var recipeHeading = {
 };
 
 class Recipe extends Component {
-
   render() {
     return (
       <div className='recipe'>
         <h2 className='recipeName' style={recipeHeading}>
           {this.props.name}
+        <input type='submit' value='Delete' />
         </h2>
         <p className='recipeCategory'>
           {this.props.category}
