@@ -31737,13 +31737,12 @@
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
-	      console.log(this.state);
 	      e.preventDefault();
 	      var name = this.state.name.trim();
 	      var category = this.state.category.trim();
 	      var ingredients = this.state.ingredients;
 	      if (!name || !category || !ingredients) {
-	        return;
+	        return false;
 	      }
 
 	      this.props.onRecipeSubmit({ name: name, category: category, ingredients: ingredients });
@@ -31854,6 +31853,7 @@
 	          image: recipe.image,
 	          name: recipe.name,
 	          key: recipe.id,
+	          id: recipe.id,
 	          category: recipe.category,
 	          ingredients: recipe.ingredients,
 	          method: recipe.method
@@ -31903,13 +31903,22 @@
 	var Recipe = function (_Component) {
 	  _inherits(Recipe, _Component);
 
-	  function Recipe() {
+	  function Recipe(props) {
 	    _classCallCheck(this, Recipe);
 
-	    return _possibleConstructorReturn(this, (Recipe.__proto__ || Object.getPrototypeOf(Recipe)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (Recipe.__proto__ || Object.getPrototypeOf(Recipe)).call(this, props));
+
+	    _this.handleRecipeDelete = _this.handleRecipeDelete.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Recipe, [{
+	    key: 'handleRecipeDelete',
+	    value: function handleRecipeDelete(e) {
+	      e.preventDefault();
+	      console.log("we handle recipes delete ".this.props.id);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -31919,7 +31928,8 @@
 	          'h2',
 	          { className: 'recipeName', style: recipeHeading },
 	          this.props.name,
-	          _react2.default.createElement('input', { type: 'submit', value: 'Delete' })
+	          _react2.default.createElement('input', { type: 'submit', value: 'Edit' }),
+	          _react2.default.createElement('input', { type: 'submit', value: 'Delete', id: this.props.id, onClick: this.handleRecipeDelete })
 	        ),
 	        _react2.default.createElement(
 	          'p',

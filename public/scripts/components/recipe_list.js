@@ -15,6 +15,7 @@ class RecipeList extends Component {
 					image={recipe.image}
           name={recipe.name}
           key={recipe.id}
+          id={recipe.id}
           category={recipe.category}
           ingredients={recipe.ingredients}
           method={recipe.method}

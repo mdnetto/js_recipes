@@ -4,13 +4,13 @@ import RecipeIngredients from './recipe_ingredients.js';
 
 export default class RecipeForm extends Component {
 	constructor() {
-	    super();
-	    this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]} 
-			this.componentWillMount = this.componentWillMount.bind(this);
-			this.handleTextChange = this.handleTextChange.bind(this);
-			this.initialiseIngredient = this.initialiseIngredient.bind(this);
-			this.handleIngredientNameEdit = this.handleIngredientNameEdit.bind(this);
-			this.handleSubmit = this.handleSubmit.bind(this);
+	  super();
+	  this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]} 
+		this.componentWillMount = this.componentWillMount.bind(this);
+		this.handleTextChange = this.handleTextChange.bind(this);
+		this.initialiseIngredient = this.initialiseIngredient.bind(this);
+		this.handleIngredientNameEdit = this.handleIngredientNameEdit.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -63,13 +63,12 @@ export default class RecipeForm extends Component {
   }
 
   handleSubmit(e) {
-		console.log(this.state);
     e.preventDefault()
     var name = this.state.name.trim()
     var category = this.state.category.trim()
     var ingredients = this.state.ingredients
     if (!name || !category || !ingredients) {
-      return
+      return false;
     }
 	  
     this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients}) 
