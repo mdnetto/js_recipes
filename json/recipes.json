@@ -85,21 +85,5 @@
             "Remove pot from heat and cool soup for 10 minutes. Puree soup with an immersion blender or mash vegetables with a potato masher and whisk the soup until smooth. ",
             "Return pot to medium heat and cook until reheated, about 5 minutes. Stir cream through the soup. "
         ]
-    },
-    {
-        "id": 1473956827655,
-        "name": "asf",
-        "category": "dinner",
-        "ingredients": [
-            {
-                "name": "asdf",
-                "unit": "",
-                "quantity": ""
-            }
-        ],
-        "method": [
-            "asdf",
-            "asdf"
-        ]
     }
 ]
