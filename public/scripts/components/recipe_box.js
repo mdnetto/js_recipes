@@ -3,7 +3,7 @@ import React, { Component }  from 'react';
 import RecipeForm from './recipe_form.js';
 import RecipeList from './recipe_list.js';
 
-class RecipeBox extends Component { 
+export default class RecipeBox extends Component { 
 
 	constructor() {
 	    super();
@@ -19,7 +19,7 @@ class RecipeBox extends Component {
   }
 
   loadRecipesFromServer() {
-    $.ajax({ // eslint-disable-line no-undef
+    $.ajax({ 
       url: this.props.recipes_url,
       dataType: 'json',
       cache: false,
@@ -33,7 +33,7 @@ class RecipeBox extends Component {
   }
 
   handleRecipeSubmit(recipe) {
-    $.ajax({// eslint-disable-line no-undef
+    $.ajax({
       url: this.props.recipes_url,
       dataType: 'json',
       type: 'POST',
@@ -57,5 +57,3 @@ class RecipeBox extends Component {
     );
   }
 }
-
-export default RecipeBox;

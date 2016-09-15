@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "react": "^15.3.1",
-    "react-dom": "^15.3.1"
+    "react-dom": "^15.3.1",
+		"express": "2.15.8",
+		"body-parser": "2.15.8"
   },
   "description": ""
 }

@@ -31542,7 +31542,7 @@
 
 	var _recipe_form2 = _interopRequireDefault(_recipe_form);
 
-	var _recipe_list = __webpack_require__(175);
+	var _recipe_list = __webpack_require__(177);
 
 	var _recipe_list2 = _interopRequireDefault(_recipe_list);
 
@@ -31578,7 +31578,7 @@
 	  }, {
 	    key: 'loadRecipesFromServer',
 	    value: function loadRecipesFromServer() {
-	      _jquery2.default.ajax({ // eslint-disable-line no-undef
+	      _jquery2.default.ajax({
 	        url: this.props.recipes_url,
 	        dataType: 'json',
 	        cache: false,
@@ -31593,7 +31593,7 @@
 	  }, {
 	    key: 'handleRecipeSubmit',
 	    value: function handleRecipeSubmit(recipe) {
-	      _jquery2.default.ajax({ // eslint-disable-line no-undef
+	      _jquery2.default.ajax({
 	        url: this.props.recipes_url,
 	        dataType: 'json',
 	        type: 'POST',
@@ -31648,9 +31648,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _recipe_ingredients = __webpack_require__(177);
+	var _recipe_ingredients = __webpack_require__(175);
 
 	var _recipe_ingredients2 = _interopRequireDefault(_recipe_ingredients);
+
+	var _recipe_method = __webpack_require__(179);
+
+	var _recipe_method2 = _interopRequireDefault(_recipe_method);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31670,11 +31674,13 @@
 
 	    var _this = _possibleConstructorReturn(this, (RecipeForm.__proto__ || Object.getPrototypeOf(RecipeForm)).call(this));
 
-	    _this.state = { name: '', category: '', ingredients: [{ name: '', unit: '', quantity: '' }] };
+	    _this.state = { name: '', category: '', ingredients: [{ name: '', unit: '', quantity: '' }], method: [''] };
 	    _this.componentWillMount = _this.componentWillMount.bind(_this);
 	    _this.handleTextChange = _this.handleTextChange.bind(_this);
 	    _this.initialiseIngredient = _this.initialiseIngredient.bind(_this);
+	    _this.initialiseMethod = _this.initialiseMethod.bind(_this);
 	    _this.handleIngredientNameEdit = _this.handleIngredientNameEdit.bind(_this);
+	    _this.handleMethodStepEdit = _this.handleMethodStepEdit.bind(_this);
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
 	  }
@@ -31688,7 +31694,7 @@
 	  }, {
 	    key: 'loadUnitsFromServer',
 	    value: function loadUnitsFromServer() {
-	      _jquery2.default.ajax({ // eslint-disable-line no-undef
+	      _jquery2.default.ajax({
 	        url: this.props.units_url,
 	        dataType: 'json',
 	        cache: false,
@@ -31728,6 +31734,20 @@
 	      this.setState({ ingredients: ingredients });
 	    }
 	  }, {
+	    key: 'initialiseMethod',
+	    value: function initialiseMethod() {
+	      var method = this.state.method;
+	      method.push(['']);
+	      this.setState({ method: method });
+	    }
+	  }, {
+	    key: 'handleMethodStepEdit',
+	    value: function handleMethodStepEdit(method_step, i) {
+	      var method = this.state.method;
+	      method[i] = method_step;
+	      this.setState({ method: method });
+	    }
+	  }, {
 	    key: 'handleIngredientNameEdit',
 	    value: function handleIngredientNameEdit(name, i) {
 	      var ingredients = this.state.ingredients;
@@ -31741,12 +31761,14 @@
 	      var name = this.state.name.trim();
 	      var category = this.state.category.trim();
 	      var ingredients = this.state.ingredients;
-	      if (!name || !category || !ingredients) {
+	      var method = this.state.method;
+	      if (!name || !category || !ingredients || !method) {
 	        return false;
 	      }
 
-	      this.props.onRecipeSubmit({ name: name, category: category, ingredients: ingredients });
-	      this.setState({ name: '', category: '', ingredients: [{ name: '', quantity: '', unit: '' }] });
+	      this.props.onRecipeSubmit({ name: name, category: category, ingredients: ingredients, method: method });
+
+	      this.setState({ name: '', category: '', ingredients: [{ name: '', quantity: '', unit: '' }], method: [''] });
 	    }
 	  }, {
 	    key: 'renderCategories',
@@ -31792,6 +31814,11 @@
 	          initialiseIngredient: this.initialiseIngredient,
 	          handleIngredientNameEdit: this.handleIngredientNameEdit
 	        }),
+	        _react2.default.createElement(_recipe_method2.default, {
+	          method: this.state.method,
+	          initialiseMethod: this.initialiseMethod,
+	          handleMethodStepEdit: this.handleMethodStepEdit
+	        }),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('input', { type: 'submit', value: 'Post' })
 	      );
@@ -31810,6 +31837,87 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RecipeIngredients = function (_Component) {
+		_inherits(RecipeIngredients, _Component);
+
+		function RecipeIngredients(props) {
+			_classCallCheck(this, RecipeIngredients);
+
+			var _this = _possibleConstructorReturn(this, (RecipeIngredients.__proto__ || Object.getPrototypeOf(RecipeIngredients)).call(this, props));
+
+			_this.initialiseIngredientOnEnter = _this.initialiseIngredientOnEnter.bind(_this);
+			return _this;
+		}
+
+		_createClass(RecipeIngredients, [{
+			key: 'initialiseIngredientOnEnter',
+			value: function initialiseIngredientOnEnter(e) {
+				if (e.keyCode == 13) {
+					e.preventDefault(); //prevent it from doign it's own thing
+					this.props.initialiseIngredient();
+				}
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var _this2 = this;
+
+				return _react2.default.createElement(
+					'div',
+					{ className: 'recipeIngredients' },
+					_react2.default.createElement(
+						'h1',
+						null,
+						'Ingredients'
+					),
+					this.props.ingredients.map(function (ingredient, i) {
+						return _react2.default.createElement(
+							'p',
+							{ key: i },
+							_react2.default.createElement('input', {
+								autoFocus: true, type: 'text',
+								value: ingredient.name,
+								onChange: function onChange(e) {
+									return _this2.props.handleIngredientNameEdit(e.target.value, i);
+								},
+								onKeyDown: _this2.initialiseIngredientOnEnter
+							})
+						);
+					})
+				);
+			}
+		}]);
+
+		return RecipeIngredients;
+	}(_react.Component);
+
+	exports.default = RecipeIngredients;
+
+/***/ },
+/* 176 */,
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
@@ -31823,7 +31931,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _recipe = __webpack_require__(176);
+	var _recipe = __webpack_require__(178);
 
 	var _recipe2 = _interopRequireDefault(_recipe);
 
@@ -31873,7 +31981,7 @@
 	exports.default = RecipeList;
 
 /***/ },
-/* 176 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31963,7 +32071,7 @@
 	exports.default = Recipe;
 
 /***/ },
-/* 177 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31986,24 +32094,24 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var RecipeIngredients = function (_Component) {
-		_inherits(RecipeIngredients, _Component);
+	var RecipeMethods = function (_Component) {
+		_inherits(RecipeMethods, _Component);
 
-		function RecipeIngredients(props) {
-			_classCallCheck(this, RecipeIngredients);
+		function RecipeMethods(props) {
+			_classCallCheck(this, RecipeMethods);
 
-			var _this = _possibleConstructorReturn(this, (RecipeIngredients.__proto__ || Object.getPrototypeOf(RecipeIngredients)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (RecipeMethods.__proto__ || Object.getPrototypeOf(RecipeMethods)).call(this, props));
 
-			_this.initialiseIngredientOnEnter = _this.initialiseIngredientOnEnter.bind(_this);
+			_this.initialiseMethodOnEnter = _this.initialiseMethodOnEnter.bind(_this);
 			return _this;
 		}
 
-		_createClass(RecipeIngredients, [{
-			key: 'initialiseIngredientOnEnter',
-			value: function initialiseIngredientOnEnter(e) {
+		_createClass(RecipeMethods, [{
+			key: 'initialiseMethodOnEnter',
+			value: function initialiseMethodOnEnter(e) {
 				if (e.keyCode == 13) {
-					e.preventDefault(); //prevent it from doign it's own thing
-					this.props.initialiseIngredient();
+					e.preventDefault();
+					this.props.initialiseMethod();
 				}
 			}
 		}, {
@@ -32013,23 +32121,23 @@
 
 				return _react2.default.createElement(
 					'div',
-					{ className: 'recipeIngredients' },
+					{ className: 'recipeMethods' },
 					_react2.default.createElement(
 						'h1',
 						null,
-						'Ingredients'
+						'Methods'
 					),
-					this.props.ingredients.map(function (ingredient, i) {
+					this.props.method.map(function (method_step, i) {
 						return _react2.default.createElement(
 							'p',
 							{ key: i },
-							_react2.default.createElement('input', {
+							_react2.default.createElement('textarea', {
 								autoFocus: true, type: 'text',
-								value: ingredient.name,
+								value: method_step.i,
 								onChange: function onChange(e) {
-									return _this2.props.handleIngredientNameEdit(e.target.value, i);
+									return _this2.props.handleMethodStepEdit(e.target.value, i);
 								},
-								onKeyDown: _this2.initialiseIngredientOnEnter
+								onKeyDown: _this2.initialiseMethodOnEnter
 							})
 						);
 					})
@@ -32037,10 +32145,10 @@
 			}
 		}]);
 
-		return RecipeIngredients;
+		return RecipeMethods;
 	}(_react.Component);
 
-	exports.default = RecipeIngredients;
+	exports.default = RecipeMethods;
 
 /***/ }
 /******/ ]);

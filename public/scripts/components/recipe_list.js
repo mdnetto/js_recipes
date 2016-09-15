@@ -2,7 +2,8 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import Recipe from './recipe.js';
 
-class RecipeList extends Component {
+export default class RecipeList extends Component {
+
 	constructor() {
 	    super();
 	}
@@ -29,5 +30,3 @@ class RecipeList extends Component {
     );
   }
 }
-
-export default RecipeList;

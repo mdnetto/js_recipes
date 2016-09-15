@@ -1,15 +1,19 @@
 import $ from 'jquery';
 import React, { Component } from 'react';
 import RecipeIngredients from './recipe_ingredients.js';
+import RecipeMethod from './recipe_method.js';
 
 export default class RecipeForm extends Component {
+
 	constructor() {
 	  super();
-	  this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}]} 
+	  this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}], method: ['']} 
 		this.componentWillMount = this.componentWillMount.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
 		this.initialiseIngredient = this.initialiseIngredient.bind(this);
+		this.initialiseMethod= this.initialiseMethod.bind(this);
 		this.handleIngredientNameEdit = this.handleIngredientNameEdit.bind(this);
+		this.handleMethodStepEdit = this.handleMethodStepEdit.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -19,7 +23,7 @@ export default class RecipeForm extends Component {
   }
 
   loadUnitsFromServer() {
-    $.ajax({// eslint-disable-line no-undef
+    $.ajax({
       url: this.props.units_url,
       dataType: 'json',
       cache: false,
@@ -53,13 +57,25 @@ export default class RecipeForm extends Component {
   initialiseIngredient() {
 		var ingredients = this.state.ingredients;
 		ingredients.push({name: '', quantity: '', unit: ''})
-		this.setState({ingredients:  ingredients});
+		this.setState({ingredients: ingredients});
+  }
+
+  initialiseMethod() {
+		var method = this.state.method;
+		method.push(['']);
+		this.setState({method: method});
+  }
+
+  handleMethodStepEdit(method_step, i) {
+	  var method = this.state.method;
+	  method[i] = method_step;
+	  this.setState({method: method});
   }
 
   handleIngredientNameEdit(name, i) {
 	  var ingredients = this.state.ingredients;
 	  ingredients[i].name = name;
-	  this.setState({ingredients:  ingredients});
+	  this.setState({ingredients: ingredients});
   }
 
   handleSubmit(e) {
@@ -67,12 +83,14 @@ export default class RecipeForm extends Component {
     var name = this.state.name.trim()
     var category = this.state.category.trim()
     var ingredients = this.state.ingredients
-    if (!name || !category || !ingredients) {
+    var method = this.state.method
+    if (!name || !category || !ingredients || !method) {
       return false;
     }
 	  
-    this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients}) 
-    this.setState({name: '', category: '', ingredients: [{name: '', quantity: '', unit: ''}]}) 
+    this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients, method: method}) 
+
+    this.setState({name: '', category: '', ingredients: [{name: '', quantity: '', unit: ''}], method: ['']}) 
   }
 
   renderCategories() {
@@ -104,6 +122,11 @@ export default class RecipeForm extends Component {
 					ingredients={this.state.ingredients} 
 					initialiseIngredient={this.initialiseIngredient} 
 					handleIngredientNameEdit={this.handleIngredientNameEdit} 
+				/>
+				<RecipeMethod
+					method={this.state.method} 
+					initialiseMethod={this.initialiseMethod} 
+					handleMethodStepEdit={this.handleMethodStepEdit} 
 				/>
 				<br></br> 
 				<input type='submit' value='Post' />

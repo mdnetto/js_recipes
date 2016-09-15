@@ -87,15 +87,19 @@
         ]
     },
     {
-        "id": 1473368412948,
-        "name": "asdf",
-        "category": "dessert",
+        "id": 1473956827655,
+        "name": "asf",
+        "category": "dinner",
         "ingredients": [
             {
                 "name": "asdf",
                 "unit": "",
                 "quantity": ""
             }
+        ],
+        "method": [
+            "asdf",
+            "asdf"
         ]
     }
 ]
