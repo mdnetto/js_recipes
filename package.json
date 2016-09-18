@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
+    "start": "node server.js",
+		"build": "webpack --config webpack.config.js --watch"
   },
   "author": "",
   "license": "ISC",
@@ -16,14 +17,15 @@
     "babel-preset-react": "^6.11.1",
     "jest": "^15.1.1",
     "jquery": "^3.1.0",
+    "react-hot-loader": "^3.0.0-beta.4",
     "react-test-renderer": "^15.3.1",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
   },
   "dependencies": {
+    "lodash": "^4.15.0",
     "react": "^15.3.1",
-    "react-dom": "^15.3.1",
-		"express": "2.15.8",
-		"body-parser": "2.15.8"
+    "react-dom": "^15.3.1"
   },
   "description": ""
 }

@@ -7,23 +7,32 @@ var recipeHeading = {
 export default class Recipe extends Component {
 	constructor(props) {
 		super(props);
-		this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
+		this.state = { isEditing: false };
 	}	
 
 	handleRecipeDelete(e) {
-		e.preventDefault()
-		console.log("we handle recipes delete " . this.props.id);
 	}
 
   render() {
     return (
       <div className='recipe'>
-        <h2 className='recipeName' style={recipeHeading}>
+        <h2 className='recipeName' 
+					style={recipeHeading}
+				>
           {this.props.name}
-        <input type='submit' value='Edit' />
-        <input type='submit' value='Delete' id={this.props.id} onClick={this.handleRecipeDelete} />
         </h2>
-        <p className='recipeCategory'>
+        <input 
+					type='submit' 
+					value='Edit' 
+				/>
+        <input 
+					type='submit' 
+					value='Delete' 
+					id={this.props.id} 
+					onClick={this.handleRecipeDelete(this.props.recipe)} 
+				/>
+        <p 
+					className='recipeCategory'>
           {this.props.category}
         </p>
         <ul>
@@ -36,4 +45,3 @@ export default class Recipe extends Component {
     );
   }
 }
-

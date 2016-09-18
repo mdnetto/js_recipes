@@ -89,7 +89,6 @@ export default class RecipeForm extends Component {
     }
 	  
     this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients, method: method}) 
-
     this.setState({name: '', category: '', ingredients: [{name: '', quantity: '', unit: ''}], method: ['']}) 
   }
 
@@ -103,7 +102,9 @@ export default class RecipeForm extends Component {
 
   render() {
     return (
-      <form className='recipeForm' onSubmit={this.handleSubmit}>
+      <form 
+				className='recipeForm' 
+				onSubmit={this.handleSubmit}>
         <input
           name='name'
           type='text'
@@ -115,22 +116,22 @@ export default class RecipeForm extends Component {
           placeholder='Select a category'
           value={this.state.category}
           onChange={this.handleTextChange}>
-					<option>Select a category</option>
-          {this.renderCategories()}
+					<option>
+						Select a category
+					</option>
+					{this.renderCategories()}
         </select>
 				<RecipeIngredients 
 					ingredients={this.state.ingredients} 
 					initialiseIngredient={this.initialiseIngredient} 
-					handleIngredientNameEdit={this.handleIngredientNameEdit} 
-				/>
+					handleIngredientNameEdit={this.handleIngredientNameEdit}/>
 				<RecipeMethod
 					method={this.state.method} 
 					initialiseMethod={this.initialiseMethod} 
-					handleMethodStepEdit={this.handleMethodStepEdit} 
-				/>
+					handleMethodStepEdit={this.handleMethodStepEdit}/>
 				<br></br> 
-				<input type='submit' value='Post' />
-				</form>
+				<input type='submit' value='Post'/>
+			</form>
     );
   }
 }

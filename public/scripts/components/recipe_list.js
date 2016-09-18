@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Recipe from './recipe.js';
 
 export default class RecipeList extends Component {
-
 	constructor() {
 	    super();
 	}

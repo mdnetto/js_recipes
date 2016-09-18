@@ -4,13 +4,11 @@ import RecipeForm from './recipe_form.js';
 import RecipeList from './recipe_list.js';
 
 export default class RecipeBox extends Component { 
-
-	constructor() {
-	    super();
-	    this.state = {recipes: []};
-			this.loadRecipesFromServer = this.loadRecipesFromServer.bind(this);
-			this.handleRecipeSubmit = this.handleRecipeSubmit.bind(this);
-			this.componentDidMount = this.componentDidMount.bind(this);
+	constructor(props) {
+	  super(props);
+	  this.state = {recipes: []};
+		this.handleRecipeSubmit = this.handleRecipeSubmit.bind(this);
+		this.loadRecipesFromServer = this.loadRecipesFromServer.bind(this);
 	}
 
   componentDidMount() {
@@ -32,6 +30,7 @@ export default class RecipeBox extends Component {
     })
   }
 
+  //add single recipe
   handleRecipeSubmit(recipe) {
     $.ajax({
       url: this.props.recipes_url,
@@ -51,8 +50,14 @@ export default class RecipeBox extends Component {
     return (
       <div className='recipeBox'>
         <h1>Recipes</h1>
-        <RecipeForm onRecipeSubmit={this.handleRecipeSubmit} categories_url='api/categories' units_url='api/units' />
-        <RecipeList data={this.state.recipes} />
+        <RecipeForm 
+					onRecipeSubmit={this.handleRecipeSubmit} 
+					categories_url='api/categories' 
+					units_url='api/units' 
+				/>
+        <RecipeList 
+					data={this.state.recipes} 
+				/>
       </div>
     );
   }
