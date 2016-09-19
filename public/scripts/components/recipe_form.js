@@ -5,8 +5,8 @@ import RecipeMethod from './recipe_method.js';
 
 export default class RecipeForm extends Component {
 
-	constructor() {
-	  super();
+	constructor(props) {
+	  super(props);
 	  this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}], method: ['']} 
 		this.componentWillMount = this.componentWillMount.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
@@ -80,14 +80,16 @@ export default class RecipeForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
+		console.log(this.props);
     var name = this.state.name.trim()
     var category = this.state.category.trim()
     var ingredients = this.state.ingredients
     var method = this.state.method
-    if (!name || !category || !ingredients || !method) {
+    
+		if (!name || !category || !ingredients || !method) {
       return false;
     }
-	  
+
     this.props.onRecipeSubmit({name: name, category: category, ingredients: ingredients, method: method}) 
     this.setState({name: '', category: '', ingredients: [{name: '', quantity: '', unit: ''}], method: ['']}) 
   }

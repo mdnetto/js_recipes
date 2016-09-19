@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import React, { Component } from 'react';
 
 var recipeHeading = {
@@ -8,29 +9,38 @@ export default class Recipe extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { isEditing: false };
+		this.handleDelete = this.handleDelete.bind(this);
+		this.handleEdit = this.handleEdit.bind(this);
 	}	
 
-	handleRecipeDelete(e) {
+	handleDelete(e) {
+		e.preventDefault();
+		var id = this.props.id;
+		console.log(id);
+		if (!id) {
+			return false;
+		}
+		this.props.handleRecipeDelete(id);
+		this.setState({recipes: recipes});
+	}
+
+	handleEdit(e) {
+		e.preventDefault();
 	}
 
   render() {
     return (
       <div className='recipe'>
-        <h2 className='recipeName' 
-					style={recipeHeading}
-				>
-          {this.props.name}
-        </h2>
-        <input 
-					type='submit' 
-					value='Edit' 
-				/>
-        <input 
-					type='submit' 
-					value='Delete' 
-					id={this.props.id} 
-					onClick={this.handleRecipeDelete(this.props.recipe)} 
-				/>
+					<h2 className='recipeName' style={recipeHeading}>{this.props.name}
+					<input 
+						type='submit' 
+						value='Edit'
+						onClick={this.handleEdit}/>
+					<input 
+						type='submit' 
+						value='Delete' 
+						onClick={this.handleDelete}/>
+				</h2>
         <p 
 					className='recipeCategory'>
           {this.props.category}

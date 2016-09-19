@@ -62,9 +62,6 @@ app.post('/api/recipes', function(req, res) {
       process.exit(1);
     }
     var recipes = JSON.parse(data);
-    // NOTE: In a real implementation, we would likely rely on a database or
-    // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
-    // treat Date.now() as unique-enough for our purposes.
     var newRecipe = {
       id: Date.now(),
       name: req.body.name,
@@ -72,6 +69,7 @@ app.post('/api/recipes', function(req, res) {
       ingredients: req.body.ingredients,
       method: req.body.method
     };
+		
     recipes.push(newRecipe);
     fs.writeFile(RECIPES_FILE, JSON.stringify(recipes, null, 4), function(err) {
       if (err) {
@@ -83,6 +81,27 @@ app.post('/api/recipes', function(req, res) {
   });
 });
 
+app.delete('/api/recipes', function(req, res) {
+  fs.readFile(RECIPES_FILE, function(err, data) {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    var recipes = JSON.parse(data);
+    var recipeToDelete = {
+      id: req.body.id 
+    };
+		var index = recipes.map(function(d) { return d['id']; }).indexOf(recipeToDelete.id);
+    recipes.splice(index, 1);
+    fs.writeFile(RECIPES_FILE, JSON.stringify(recipes, null, 4), function(err) {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+      res.json(recipes);
+    });
+  });
+});
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');

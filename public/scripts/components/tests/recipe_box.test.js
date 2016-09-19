@@ -3,7 +3,7 @@ describe('recipe box', () => {
 	const recipe_box = require('./recipe_box');
 	const sum = require('../sum');
 
-	test('adds 1 + 2 to equal 3', () => {
+	test('', () => {
 			expect(sum(1, 2)).toBe(3);
 	});
 

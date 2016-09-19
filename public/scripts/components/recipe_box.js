@@ -30,7 +30,6 @@ export default class RecipeBox extends Component {
     })
   }
 
-  //add single recipe
   handleRecipeSubmit(recipe) {
     $.ajax({
       url: this.props.recipes_url,
