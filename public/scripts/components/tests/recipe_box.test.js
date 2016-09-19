@@ -1,10 +1,8 @@
 describe('recipe box', () => {
 
-	const recipe_box = require('./recipe_box');
-	const sum = require('../sum');
+	const recipe_box = require('../recipe_box');
 
 	test('', () => {
-			expect(sum(1, 2)).toBe(3);
 	});
 
 	//test('loads recipes from server', () => {
