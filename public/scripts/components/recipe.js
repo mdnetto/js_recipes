@@ -21,7 +21,6 @@ export default class Recipe extends Component {
 			return false;
 		}
 		this.props.handleRecipeDelete(id);
-		this.setState({recipes: recipes});
 	}
 
 	handleEdit(e) {

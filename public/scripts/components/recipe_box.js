@@ -13,7 +13,6 @@ export default class RecipeBox extends Component {
 
   componentDidMount() {
     this.loadRecipesFromServer()
-    setInterval(this.loadRecipesFromServer, this.props.pollInterval)
   }
 
   loadRecipesFromServer() {
@@ -55,6 +54,7 @@ export default class RecipeBox extends Component {
 					units_url='api/units' 
 				/>
         <RecipeList 
+					recipes_url={this.props.recipes_url}
 					data={this.state.recipes} 
 				/>
       </div>

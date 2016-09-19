@@ -9,8 +9,9 @@ export default class RecipeList extends Component {
 	}
 
   handleRecipeDelete(recipe_id) {
+		console.log(this.props);
     $.ajax({
-      url: this.props.recipes_url,
+			url: this.props.recipes_url + '/' + recipe_id,
       dataType: 'json',
       type: 'DELETE',
       data: recipe_id,

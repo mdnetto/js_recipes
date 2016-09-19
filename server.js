@@ -1,4 +1,5 @@
 var fs = require('fs');
+var _ = require('lodash');
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -81,18 +82,17 @@ app.post('/api/recipes', function(req, res) {
   });
 });
 
-app.delete('/api/recipes', function(req, res) {
+app.delete('/api/recipes/:id', function(req, res) {
   fs.readFile(RECIPES_FILE, function(err, data) {
     if (err) {
       console.error(err);
       process.exit(1);
     }
     var recipes = JSON.parse(data);
-    var recipeToDelete = {
-      id: req.body.id 
-    };
-		var index = recipes.map(function(d) { return d['id']; }).indexOf(recipeToDelete.id);
-    recipes.splice(index, 1);
+
+		
+		_.remove(recipes, recipe => recipe.id == req.params.id);
+		console.log(recipes);
     fs.writeFile(RECIPES_FILE, JSON.stringify(recipes, null, 4), function(err) {
       if (err) {
         console.error(err);
