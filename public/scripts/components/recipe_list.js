@@ -6,7 +6,24 @@ export default class RecipeList extends Component {
 	constructor(props) {
 	  super(props);
 		this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
+		this.handleRecipeEdit = this.handleRecipeEdit.bind(this);
 	}
+
+  handleRecipeEdit(recipe_id) {
+		console.log(this.props);
+    $.ajax({
+			url: this.props.recipes_url + '/' + recipe_id,
+      dataType: 'json',
+      type: 'POST',
+      data: recipe_id,
+      success: function (recipes) {
+        this.setState({recipes: recipes})
+      }.bind(this),
+      error: function (xhr, status, err) {
+        console.error(this.props.recipes_url, status, err.toString())
+      }.bind(this)
+    })
+  }
 
   handleRecipeDelete(recipe_id) {
 		console.log(this.props);

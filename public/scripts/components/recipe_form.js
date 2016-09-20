@@ -80,7 +80,6 @@ export default class RecipeForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-		console.log(this.props);
     var name = this.state.name.trim()
     var category = this.state.category.trim()
     var ingredients = this.state.ingredients
