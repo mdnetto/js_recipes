@@ -89,7 +89,6 @@ app.delete('/api/recipes/:id', function(req, res) {
       process.exit(1);
     }
     var recipes = JSON.parse(data);
-
 		
 		_.remove(recipes, recipe => recipe.id == req.params.id);
 		console.log(recipes);
@@ -103,6 +102,34 @@ app.delete('/api/recipes/:id', function(req, res) {
   });
 });
 
+app.put('/api/recipes/:id', function(req, res) {
+  fs.readFile(RECIPES_FILE, function(err, data) {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    var recipes = JSON.parse(data);
+
+    var newRecipe = {
+			id: req.params.id,
+      name: req.body.name,
+      category: req.body.category,
+      ingredients: req.body.ingredients,
+      method: req.body.method
+    };
+		console.log(req.body);
+
+    replaceIfEdited = recipe => recipe.id == req.params.id ? newRecipe : recipe
+		recipes = recipes.map(replaceIfEdited)
+    fs.writeFile(RECIPES_FILE, JSON.stringify(recipes, null, 4), function(err) {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+      res.json(recipes);
+    });
+  });
+});
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
