@@ -24,9 +24,14 @@
     "webpack-dev-server": "^1.16.1"
   },
   "dependencies": {
+    "chai": "^3.5.0",
+    "enzyme": "^2.4.1",
+    "jsdom": "^9.5.0",
     "lodash": "^4.15.0",
     "react": "^15.3.1",
-    "react-dom": "^15.3.1"
+    "react-addons-test-utils": "^15.3.2",
+    "react-dom": "^15.3.1",
+    "react-test-utils": "0.0.1"
   },
   "description": ""
 }

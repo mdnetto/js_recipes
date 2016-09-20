@@ -59,6 +59,7 @@ export default class Recipe extends Component {
 			<div>
 				<input 
 					type='submit' 
+          className='edit-button'
 					value='Edit'
 					onClick={this.handleEdit}/>
 				<input 
@@ -71,7 +72,6 @@ export default class Recipe extends Component {
 
 	renderRecipeSection() {
 		if (this.state.isEditing) {
-			console.log(this.props);
 			return (
 				<RecipeForm 
 						recipe={this.props}
