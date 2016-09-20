@@ -7,7 +7,12 @@ export default class RecipeForm extends Component {
 
 	constructor(props) {
 	  super(props);
-	  this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}], method: ['']} 
+
+		if (this.props.recipe) {
+			this.state = this.props.recipe; 
+		} else {
+			this.state = {name: '', category: '', ingredients: [{name: '', unit: '', quantity: ''}], method: ['']} 
+		}
 		this.componentWillMount = this.componentWillMount.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
 		this.initialiseIngredient = this.initialiseIngredient.bind(this);
@@ -131,7 +136,7 @@ export default class RecipeForm extends Component {
 					initialiseMethod={this.initialiseMethod} 
 					handleMethodStepEdit={this.handleMethodStepEdit}/>
 				<br></br> 
-				<input type='submit' value='Post'/>
+				<input type='submit' value='Save'/>
 			</form>
     );
   }

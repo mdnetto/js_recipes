@@ -53,6 +53,7 @@ export default class RecipeList extends Component {
 				category={recipe.category}
 				ingredients={recipe.ingredients}
 				method={recipe.method}
+				recipes_url={this.props.recipes_url}
 			/>
 		))
     return (
