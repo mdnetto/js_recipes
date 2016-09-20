@@ -1,5 +1,0 @@
-describe('recipe list', () => {
-
-
-
-});

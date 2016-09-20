@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import React, { Component } from 'react';
 import Recipe from './recipe.js';
+import _ from 'lodash'
 
 export default class RecipeList extends Component {
 	constructor(props) {
