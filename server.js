@@ -91,7 +91,6 @@ app.delete('/api/recipes/:id', function(req, res) {
     var recipes = JSON.parse(data);
 		
 		_.remove(recipes, recipe => recipe.id == req.params.id);
-		console.log(recipes);
     fs.writeFile(RECIPES_FILE, JSON.stringify(recipes, null, 4), function(err) {
       if (err) {
         console.error(err);
