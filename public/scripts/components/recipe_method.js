@@ -13,6 +13,7 @@ export default class RecipeMethods extends Component {
 		}
   }
 
+	
   render() {
     return (
       <div className='recipeMethods'>
@@ -22,7 +23,7 @@ export default class RecipeMethods extends Component {
 							<p key={i}>
 								<textarea
 									autoFocus type='text' 
-									value={method_step.i} 
+									value={method_step} 
 									onChange = {
 										(e) => (
 											this.props.handleMethodStepEdit(e.target.value, i)

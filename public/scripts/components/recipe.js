@@ -18,7 +18,7 @@ export default class Recipe extends Component {
 
 	handleDelete() {
 		//do we need to check for id and return false if no id?
-		this.props.handleRecipeDelete(id);
+		this.props.handleRecipeDelete(this.props.id);
 	}
 
 	handleEdit() {
@@ -64,6 +64,7 @@ export default class Recipe extends Component {
 					onClick={this.handleEdit}/>
 				<input 
 					type='submit' 
+					className='delete-button'
 					value='Delete' 
 					onClick={this.handleDelete}/>
 			</div>
@@ -74,25 +75,29 @@ export default class Recipe extends Component {
 		if (this.state.isEditing) {
 			return (
 				<RecipeForm 
-						recipe={this.props}
-						onRecipeSubmit={this.handleRecipeEdit} 
-						categories_url='api/categories' 
-						units_url='api/units' 
+					recipe={this.props}
+					onRecipeSubmit={this.handleRecipeEdit} 
+					categories_url='api/categories' 
+					units_url='api/units' 
 				/>
 			)
 		}
 		return (
 			<div>
-				<h2 className='recipeName' style={recipeHeading}>{this.props.name}</h2>
-        <p className='recipeCategory'>
+				<h2 className='recipe-name' style={recipeHeading}>{this.props.name}</h2>
+        <p className='recipe-category'>
           {this.props.category}
         </p>
         <ul>
           {this.props.ingredients.map(function (ingredient, i) {
-            return <li key={i}>{ingredient.quantity} {ingredient.unit}, {ingredient.name} </li>
+            return <li key={i}>{ingredient.quantity} {ingredient.unit} {ingredient.name} </li>
           })}
         </ul>
-				{this.props.method}
+				<ul>
+					{this.props.method.map(function (step, i) {
+						return <li key={i}>{step}</li>
+					})}
+				</ul>
 			</div>
 		)
 	}

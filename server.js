@@ -117,7 +117,6 @@ app.put('/api/recipes/:id', function(req, res) {
       ingredients: req.body.ingredients,
       method: req.body.method
     };
-		console.log(req.body);
 
     replaceIfEdited = recipe => recipe.id == req.params.id ? newRecipe : recipe
 		recipes = recipes.map(replaceIfEdited)
