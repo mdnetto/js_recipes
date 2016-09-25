@@ -3,7 +3,20 @@ import React, { Component } from 'react';
 import RecipeForm from './recipe_form.js';
 
 var recipeHeading = {
-	color: '#657b83'
+	color: '#333',
+	fontFamily: 'raleway',
+	fontSize: '25px',
+};
+
+var recipe = {
+	color: '#333',
+	fontFamily: 'raleway',
+	fontSize: '15px',
+};
+
+var list = {
+	listStyle: 'none',
+	padding: '0px',
 };
 
 export default class Recipe extends Component {
@@ -83,17 +96,17 @@ export default class Recipe extends Component {
 			)
 		}
 		return (
-			<div>
-				<h2 className='recipe-name' style={recipeHeading}>{this.props.name}</h2>
+			<div className='recipe' style={recipe}>
+				<p className='recipe-name' style={recipeHeading}>{this.props.name}</p>
         <p className='recipe-category'>
           {this.props.category}
         </p>
-        <ul>
+        <ul style={list}>
           {this.props.ingredients.map(function (ingredient, i) {
             return <li key={i}>{ingredient.quantity} {ingredient.unit} {ingredient.name} </li>
           })}
         </ul>
-				<ul>
+				<ul style={list}>
 					{this.props.method.map(function (step, i) {
 						return <li key={i}>{step}</li>
 					})}
