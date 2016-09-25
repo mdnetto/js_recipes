@@ -80,5 +80,60 @@
             "Bake at 375° for 35 minutes or until lightly browned and bubbly.",
             "Let stand 10 minutes. Serve warm with whipped cream, if desired. Garnish with fresh mint sprig, if desired."
         ]
+    },
+    {
+        "id": 1474825886493,
+        "name": "Dahl",
+        "category": "dinner",
+        "ingredients": [
+            {
+                "name": "2 cups red lentils",
+                "unit": "",
+                "quantity": ""
+            },
+            {
+                "name": "water",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "cumin",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "turmeric",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "onion",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "baby spinach",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "lemon juice",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "mustard seeds",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "",
+                "quantity": "",
+                "unit": ""
+            }
+        ],
+        "method": [
+            "boil water"
+        ]
     }
 ]
