@@ -33,21 +33,18 @@ var actions = {
 };
 
 var recipeCard = {
-	float: 'left',
-	margin: '1%',
-	padding: '1%',
-	width: '20%',
+	columnBreakInside: 'avoid',
 	lineHeight: '1em',
 	borderStyle: 'dashed',
 	borderLeft: 'none',
 	borderBottom: 'none',
 	borderRight: 'none',
 	borderRadius: '5px',
-	borderColor: '#ccc'
+	borderColor: '#ccc',
 };
 
 var dinner = {
-	borderColor: 'red',	
+	//borderColor: 'red',	
 };
 
 export default class Recipe extends Component {
@@ -61,7 +58,6 @@ export default class Recipe extends Component {
 	}	
 
 	handleDelete() {
-		//do we need to check for id and return false if no id?
 		this.props.handleRecipeDelete(this.props.id);
 	}
 
@@ -120,6 +116,7 @@ export default class Recipe extends Component {
 	renderRecipeSection() {
 		var category = this.props.category;
 		if (this.state.isEditing) {
+			
 			return (
 				<RecipeForm 
 					recipe={this.props}
@@ -132,7 +129,7 @@ export default class Recipe extends Component {
 		return (
 			<div className='recipe' style={recipe}>
 				<p className='recipe-name' style={heading}>{this.props.name}</p>
-        <p className='recipe-category' style={}>
+        <p className='recipe-category'>
           {this.props.category}
         </p>
         <ul style={list}>

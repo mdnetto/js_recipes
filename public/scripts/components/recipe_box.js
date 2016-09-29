@@ -15,6 +15,7 @@ export default class RecipeBox extends Component {
 	  this.state = {recipes: []};
 		this.handleRecipeSubmit = this.handleRecipeSubmit.bind(this);
 		this.loadRecipesFromServer = this.loadRecipesFromServer.bind(this);
+		this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
 	}
 
   componentDidMount() {
@@ -50,6 +51,22 @@ export default class RecipeBox extends Component {
     })
   }
 
+
+  handleRecipeDelete(recipe_id) {
+    $.ajax({
+			url: this.props.recipes_url + '/' + recipe_id,
+      dataType: 'json',
+      type: 'DELETE',
+      data: recipe_id,
+      success: function (recipes) {
+        this.setState({recipes: recipes})
+      }.bind(this),
+      error: function (xhr, status, err) {
+        console.error(this.props.recipes_url, status, err.toString())
+      }.bind(this)
+    })
+  }
+
   render() {
     return (
       <div className='recipeBox' style={heading}>
@@ -60,6 +77,7 @@ export default class RecipeBox extends Component {
 					units_url='api/units' 
 				/>
         <RecipeList 
+					onRecipeDelete={this.handleRecipeDelete}
 					recipes_url={this.props.recipes_url}
 					data={this.state.recipes} 
 				/>

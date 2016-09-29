@@ -3,32 +3,22 @@ import React, { Component } from 'react';
 import Recipe from './recipe.js';
 import _ from 'lodash'
 
+var recipe_list = {
+		columnCount: '4',
+		columnGap: '1%',
+		columnFill: 'auto',
+};
+
 export default class RecipeList extends Component {
 	constructor(props) {
 	  super(props);
-		this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
 	}
-
-  handleRecipeDelete(recipe_id) {
-    $.ajax({
-			url: this.props.recipes_url + '/' + recipe_id,
-      dataType: 'json',
-      type: 'DELETE',
-      data: recipe_id,
-      success: function (recipes) {
-        this.setState({recipes: recipes})
-      }.bind(this),
-      error: function (xhr, status, err) {
-        console.error(this.props.recipes_url, status, err.toString())
-      }.bind(this)
-    })
-  }
 
   render() {
     var recipes = _.orderBy(this.props.data, ['id'], ['desc'])
     var recipeNodes = recipes.map(recipe => (
 			<Recipe
-				handleRecipeDelete={this.handleRecipeDelete}
+				handleRecipeDelete={this.props.onRecipeDelete}
 				image={recipe.image}
 				name={recipe.name}
 				key={recipe.id}
@@ -40,7 +30,7 @@ export default class RecipeList extends Component {
 			/>
 		))
     return (
-      <div className='recipeList'>
+      <div className='recipeList' style={recipe_list}>
         {recipeNodes}
       </div>
     );
