@@ -70,16 +70,15 @@ export default class RecipeBox extends Component {
   render() {
     return (
       <div className='recipeBox' style={heading}>
-        <p>Recipes</p>
-        <RecipeForm 
-					onRecipeSubmit={this.handleRecipeSubmit} 
-					categories_url='api/categories' 
-					units_url='api/units' 
-				/>
         <RecipeList 
 					onRecipeDelete={this.handleRecipeDelete}
 					recipes_url={this.props.recipes_url}
 					data={this.state.recipes} 
+				/>
+        <RecipeForm 
+					onRecipeSubmit={this.handleRecipeSubmit} 
+					categories_url='api/categories' 
+					units_url='api/units' 
 				/>
       </div>
     );
