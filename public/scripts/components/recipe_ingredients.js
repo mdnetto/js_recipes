@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+var heading = {
+	color: '#333',
+	fontFamily: 'raleway',
+	fontSize: '25px',
+};
+
 export default class RecipeIngredients extends Component {
 	constructor(props) {
 	  super(props);
@@ -15,8 +21,8 @@ export default class RecipeIngredients extends Component {
 
   render() {
     return (
-      <div className='recipeIngredients'>
-        <h1>Ingredients</h1>
+      <div className='recipeIngredients' style={heading}>
+        <p>Ingredients</p>
 					{this.props.ingredients.map((ingredient, i) => {
 						return(
 							<p key={i}>

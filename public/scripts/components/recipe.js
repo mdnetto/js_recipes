@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React, { Component } from 'react';
 import RecipeForm from './recipe_form.js';
 
-var recipeHeading = {
+var heading = {
 	color: '#333',
 	fontFamily: 'raleway',
 	fontSize: '25px',
@@ -16,7 +16,38 @@ var recipe = {
 
 var list = {
 	listStyle: 'none',
-	padding: '0px',
+	padding: '0px'
+};
+
+var listItem = {
+	padding: '3% 0',
+};
+
+var actions = {
+	color: '#ccc',
+	border: 'none',
+	backgroundColor: 'white',
+	fontFamily: 'raleway',
+	fontSize: '15px',
+	float: 'right',
+};
+
+var recipeCard = {
+	float: 'left',
+	margin: '1%',
+	padding: '1%',
+	width: '20%',
+	lineHeight: '1em',
+	borderStyle: 'dashed',
+	borderLeft: 'none',
+	borderBottom: 'none',
+	borderRight: 'none',
+	borderRadius: '5px',
+	borderColor: '#ccc'
+};
+
+var dinner = {
+	borderColor: 'red',	
 };
 
 export default class Recipe extends Component {
@@ -70,21 +101,24 @@ export default class Recipe extends Component {
 		}
 		return (
 			<div>
+				<input
+					type='submit' 
+					className='delete-button'
+					style={actions}
+					value='X' 
+					onClick={this.handleDelete}/>
 				<input 
 					type='submit' 
           className='edit-button'
+					style={actions}
 					value='Edit'
 					onClick={this.handleEdit}/>
-				<input 
-					type='submit' 
-					className='delete-button'
-					value='Delete' 
-					onClick={this.handleDelete}/>
 			</div>
 		)
 	}
 
 	renderRecipeSection() {
+		var category = this.props.category;
 		if (this.state.isEditing) {
 			return (
 				<RecipeForm 
@@ -97,8 +131,8 @@ export default class Recipe extends Component {
 		}
 		return (
 			<div className='recipe' style={recipe}>
-				<p className='recipe-name' style={recipeHeading}>{this.props.name}</p>
-        <p className='recipe-category'>
+				<p className='recipe-name' style={heading}>{this.props.name}</p>
+        <p className='recipe-category' style={}>
           {this.props.category}
         </p>
         <ul style={list}>
@@ -108,7 +142,7 @@ export default class Recipe extends Component {
         </ul>
 				<ul style={list}>
 					{this.props.method.map(function (step, i) {
-						return <li key={i}>{step}</li>
+						return <li style={listItem} key={i}>{step}</li>
 					})}
 				</ul>
 			</div>
@@ -117,10 +151,9 @@ export default class Recipe extends Component {
 
   render() {
     return (
-      <div className='recipe'>
-				{this.renderRecipeSection()}
+      <div style={recipeCard}>
 				{this.renderActionSection()}
-				<hr></hr>
+				{this.renderRecipeSection()}
       </div>
     );
   }

@@ -82,7 +82,7 @@
         ]
     },
     {
-        "id": 1474825886493,
+        "id": "1474825886493",
         "name": "Dahl",
         "category": "dinner",
         "ingredients": [
@@ -92,22 +92,22 @@
                 "quantity": ""
             },
             {
-                "name": "water",
+                "name": "6 cups of water",
                 "quantity": "",
                 "unit": ""
             },
             {
-                "name": "cumin",
+                "name": "2 tablespoons of cumin",
                 "quantity": "",
                 "unit": ""
             },
             {
-                "name": "turmeric",
+                "name": "2 teaspoons of turmeric",
                 "quantity": "",
                 "unit": ""
             },
             {
-                "name": "onion",
+                "name": "1 large onion",
                 "quantity": "",
                 "unit": ""
             },
@@ -122,18 +122,26 @@
                 "unit": ""
             },
             {
-                "name": "mustard seeds",
+                "name": "1 tablespoon mustard seeds",
                 "quantity": "",
                 "unit": ""
             },
             {
-                "name": "",
+                "name": "1 tablespoon ground ginger",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "1 tablespoon ground garlic",
                 "quantity": "",
                 "unit": ""
             }
         ],
         "method": [
-            "boil water"
+            "Wash lentils, add to boiling water",
+            "In a fry pan, gently saute the mustard seeds. Add onion and ground ginger and garlic.",
+            "Add cumin and turmeric to lentils. Salt as per taste",
+            "Combine fried onion into lentil mix. Add fresh coriander, spinace and lemon juice minutes before serving while lentils are cooling."
         ]
     }
 ]

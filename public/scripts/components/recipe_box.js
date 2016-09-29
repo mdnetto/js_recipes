@@ -3,6 +3,12 @@ import React, { Component }  from 'react';
 import RecipeForm from './recipe_form.js';
 import RecipeList from './recipe_list.js';
 
+var heading = {
+	color: '#333',
+	fontFamily: 'raleway',
+	fontSize: '25px',
+};
+
 export default class RecipeBox extends Component { 
 	constructor(props) {
 	  super(props);
@@ -46,8 +52,8 @@ export default class RecipeBox extends Component {
 
   render() {
     return (
-      <div className='recipeBox'>
-        <h1>Recipes</h1>
+      <div className='recipeBox' style={heading}>
+        <p>Recipes</p>
         <RecipeForm 
 					onRecipeSubmit={this.handleRecipeSubmit} 
 					categories_url='api/categories' 

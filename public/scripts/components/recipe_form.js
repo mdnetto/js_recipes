@@ -114,7 +114,7 @@ export default class RecipeForm extends Component {
         <input
           name='name'
           type='text'
-          placeholder='Recipe name'
+          placeholder='Recipe title'
           value={this.state.name}
           onChange={this.handleTextChange}/>
         <select
