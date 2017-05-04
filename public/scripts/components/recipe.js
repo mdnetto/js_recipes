@@ -1,10 +1,4 @@
-import $ from 'jquerylist={[
-        {name: 'Tyler', friend: true},
-        {name: 'Jess', friend: true},
-        {name: 'Annika', friend: false},
-        {name: 'Bert', friend: true},
-        {name: 'Alicia', friend: true} ]}
-;
+import $ from jquery;
 import React, { Component } from 'react';
 import RecipeForm from './recipe_form.js';
 
