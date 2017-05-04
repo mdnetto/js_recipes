@@ -26,6 +26,7 @@ describe("Recipe component", function() {
 	  expect(component.contains('carrot soup')).to.equal(true);
 	  expect(component.contains('boil')).to.equal(true);
 	  expect(component.contains('water')).to.equal(true);
+	  expect(component.contains('cups')).to.equal(true);
 	});
 
 	it("should display recipe action buttons", function() {
@@ -58,9 +59,10 @@ describe("Recipe component", function() {
 	  //expect(component.contains('stock')).to.equal(true)
 	});
 
-	it("should delete a recipe", function() {
+	it.skip("should delete a recipe", function() {
 		var component = mount(<RecipeList {...props}/>);
-    //expect(component.find('.recipe')).to.have.length(1)
-    //component.find('.delete-button').simulate('click')
+    //expect(component.find('.recipe')).to.have.length(0)
+    component.find('.delete-button').simulate('click')
+    expect(component.find('.recipe')).to.have.length(0)
 	});
 });

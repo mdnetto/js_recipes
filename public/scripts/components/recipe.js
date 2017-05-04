@@ -1,4 +1,10 @@
-import $ from 'jquery';
+import $ from 'jquerylist={[
+        {name: 'Tyler', friend: true},
+        {name: 'Jess', friend: true},
+        {name: 'Annika', friend: false},
+        {name: 'Bert', friend: true},
+        {name: 'Alicia', friend: true} ]}
+;
 import React, { Component } from 'react';
 import RecipeForm from './recipe_form.js';
 
@@ -33,14 +39,13 @@ var actions = {
 };
 
 var recipeCard = {
-	columnBreakInside: 'avoid',
+	WebkitColumnBreakInside: 'avoid',
 	lineHeight: '1em',
-	borderStyle: 'dashed',
-	borderLeft: 'none',
-	borderBottom: 'none',
-	borderRight: 'none',
-	borderRadius: '5px',
-	borderColor: '#ccc',
+//	borderStyle: 'dashed',
+//	borderLeft: 'none',
+//	borderBottom: 'none',
+//	borderRight: 'none',
+//	borderColor: '#ccc',
 };
 
 var dinner = {
@@ -137,20 +142,20 @@ export default class Recipe extends Component {
             return <li key={i}>{ingredient.quantity} {ingredient.unit} {ingredient.name} </li>
           })}
         </ul>
-				<ul style={list}>
-					{this.props.method.map(function (step, i) {
-						return <li style={listItem} key={i}>{step}</li>
-					})}
-				</ul>
-			</div>
-		)
-	}
+            <ul style={list}>
+                    {this.props.method.map(function (step, i) {
+                            return <li style={listItem} key={i}>{step}</li>
+                    })}
+            </ul>
+        </div>
+            )
+    }
 
   render() {
     return (
       <div style={recipeCard}>
-				{this.renderActionSection()}
-				{this.renderRecipeSection()}
+        {this.renderActionSection()}
+        {this.renderRecipeSection()}
       </div>
     );
   }

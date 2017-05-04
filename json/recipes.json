@@ -143,5 +143,36 @@
             "Add cumin and turmeric to lentils. Salt as per taste",
             "Combine fried onion into lentil mix. Add fresh coriander, spinace and lemon juice minutes before serving while lentils are cooling."
         ]
+    },
+    {
+        "id": "1493929134845",
+        "name": "Pea Soup",
+        "category": "soup",
+        "ingredients": [
+            {
+                "name": "peas",
+                "unit": "",
+                "quantity": ""
+            },
+            {
+                "name": "water",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "maybe ham",
+                "quantity": "",
+                "unit": ""
+            },
+            {
+                "name": "",
+                "quantity": "",
+                "unit": ""
+            }
+        ],
+        "method": [
+            "blend",
+            ""
+        ]
     }
 ]
